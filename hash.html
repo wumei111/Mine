@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>hash</title>
+</head>
+<body>
+    <a href="#/">主页</a>
+    <a href="#/index">index</a>
+    <a href="#/home">home</a>
+    <div class="content"></div>
+    <script>
+        
+        class Router {
+            constructor({routes}) {
+                this.routes = routes;
+                this.obj = {};
+                this.init();
+                
+                this.routes.forEach(item => {
+                    this.obj[item.path] = function() {
+                        document.querySelector('.content').innerHTML = item.component
+                    }
+                })
+
+            }
+
+            init() {
+                window.addEventListener('load', this.bindEvent.bind(this))
+                window.addEventListener('hashchange', this.bindEvent.bind(this))
+            }
+
+            bindEvent() {
+                var res = window.location.hash.slice(1)
+                this.obj[res]()
+            }
+
+        }
+        
+        new Router({
+            routes : [
+                {
+                    path: '/',
+                    component: '主页'
+                },
+                {
+                    path: '/index',
+                    component: 'index'
+                },
+                {
+                    path: '/home',
+                    component: 'home'
+                }
+            ]
+        })
+    </script>
+</body>
+</html>

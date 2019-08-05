@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <a href="script:;" data-to='/'>当前首页</a>
+    <a href="script:;" data-to='/detail'>当前详情</a>
+    <a href="script:;" data-to='/index'>当前index</a>
+    <div class="content"></div>
+    <script>
+        class router{
+            
+        }
+        new router({
+            routes: [
+                {
+                    path: '/',
+                    component: '首页'
+                },
+                {
+                    path: '/detail',
+                    component: '详情'
+                },
+                {
+                    path: '/index',
+                    component: 'index'
+                }
+            ]
+        })
+    </script>
+</body>
+</html>

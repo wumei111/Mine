@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        var arr = [[1,2,2],[3,4,5,5],[6,7,8,9,[11,12,[12,13,[14]]]],10];
+
+        function flat(arr, newArr = []) {
+            arr.forEach((item) => {
+                if(typeof item === 'object'){
+                    flat(item, newArr)
+                }else{
+                    newArr.indexOf(item)=== -1 && newArr.push(item)
+                }
+            })
+            return newArr.sort((a,b)=>{
+                return a-b
+            })
+        }
+
+        console.log(flat(arr))
+
+        // var flatten = function(arr){
+        //     return arr.reduce(
+        //         function(acc, val){
+        //             return acc.concat(Array.isArray(val) ? flatten(val) : val)
+        //         }, []
+        //     );
+        // };
+
+        // var arr1 = flatten(arr);
+
+        // //[1, 2, 2, 3, 4, 5, 5, 6, 7, 8, 9, 11, 12, 12, 13, 14, 10]
+
+        // function sortNumber(a,b){
+        //     return a - b
+        // }
+
+        // var arry2 = arr1.sort(sortNumber)
+
+        // function dedupe(array) {
+        //     return Array.from(new Set(array));
+        // }
+
+        // var arr3 = dedupe(arry2);
+
+        // console.log(arr3);
+    </script>
+</body>
+</html>

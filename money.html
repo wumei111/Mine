@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>1元7角1分</title>
+</head>
+<body>
+    <script>
+        class Money{
+
+            constructor(props) {
+                this.number = props; // 获取实例上的属性通过constructor获取
+                console.log(this.number) // 会执行三次
+            }
+
+            static add(one, two) {  //实例上的静态方法
+                let sum = one.number + two.number
+                let plice = sum.toString().split("") 
+                return `${plice[0]}元${plice[1]}角${plice[2]}分` 
+            }
+
+            add(two) { // 实例化对象的原型方法  (两者互不冲突)
+                let sum = this.number + two.number // 接收实例上的num + 当前实例化对象的num (当前的this指向实例化对象)
+                let plice = sum.toString().split("") 
+                return `${plice[0]}元${plice[1]}角${plice[2]}分`
+            }
+
+            valueOf() {
+                return this.number
+            }
+
+            toString() {
+                let plice = this.number.toString().split("") 
+                return `${plice[0]}元${plice[1]}角${plice[2]}分`
+            }
+
+        }
+
+        let one = new Money(120);
+        let two = new Money(51);
+        let three = Money.add(one, two); // 静态方法
+        let four = one.add(two);    // 原型方法
+        let five = new Money(one + two); // 对象相加
+        console.log(`${three}, ${four}, ${five}`) // 三个1元7角1分
+    </script>
+</body>
+</html>
